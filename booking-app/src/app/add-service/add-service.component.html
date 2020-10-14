@@ -1,0 +1,78 @@
+<form  [formGroup] = "serviceForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label>Name</label>
+        <input required type="text" class="form-control" formControlName="name" [class.is-invalid]="name.invalid && name.touched">
+        <div *ngIf="name.invalid && name.touched">
+            <small *ngIf="name.errors.required" class="text-danger" >Name is required</small>
+            <small *ngIf="name.errors.minlength" class="text-danger">Name must be at least 3 characters</small>
+        </div>  
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" formControlName="description" [class.is-invalid]="description.invalid && description.touched">
+        <div *ngIf="description.invalid && description.touched">
+            <small *ngIf="description.errors.required" class="text-danger" >Description is required</small>
+            <small *ngIf="description.errors.minlength" class="text-danger">Description must be at least 3 characters</small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label >Aviability</label>
+         <ng-container formArrayName="aviability">
+            <div *ngFor="let element of aviability.controls; index as i"  class="form-row">
+                <ng-container [formGroupName]="i" >
+
+                    <div class="form-group col">
+                        <label for="day">Day</label>
+                        <select class="custom-select" formControlName="day">
+                            <option *ngFor="let day of days" [value]="day">
+                                {{day}}
+                            </option>
+                        </select>
+                        <small *ngIf="element.get('day').touched && element.get('day').invalid" class="text-danger" >Day is required</small>
+                    </div>
+                   
+                    <div class="form-group col">
+                        <label>Start Time</label>
+                        <input placeholder="HH:mm" formControlName="startHour" type="time" class="form-control">
+                        <small *ngIf="element.get('startHour').touched && element.get('startHour').invalid" class="text-danger" >Start Time is required</small>
+                    </div>
+
+                    <div class="form-group col">
+                        <label>End Time</label>
+                        <input placeholder="HH:mm" formControlName="endHour" type="time" class="form-control">
+                        <small *ngIf="element.get('endHour').touched && element.get('endHour').invalid" class="text-danger" >End Time is required</small>
+                    </div>
+                </ng-container>
+            </div>
+            <button type="button" class="btn btn-secondary" (click)="addDay()" [disabled]="aviability.invalid">Add day</button>
+         </ng-container>
+    
+    </div>
+
+    <div class="form-group">
+        <label>Duration (min)</label>
+        <input min="10" max="480" type="number" class="form-control" [class.is-invalid]="duration.invalid && duration.touched" formControlName="duration"/>
+        <small *ngIf="duration.invalid && duration.touched" class="text-danger">Duration must be between 10min and 8h (480min)</small>
+    </div>
+
+    <div class="form-group">
+        <label>Spaces</label>
+        <input min="1" type="number" class="form-control" [class.is-invalid]="serviceSpace.invalid && serviceSpace.touched" formControlName="serviceSpace"/>
+        <small *ngIf="serviceSpace.invalid && serviceSpace.touched" class="text-danger">It must be at least 1 space</small>
+    </div>
+
+    <label>Price</label>
+    <div class="input-group">
+        <input min="1" type="number" class="form-control" [class.is-invalid]="servicePrice.invalid && servicePrice.touched" formControlName="servicePrice">
+        <div class="input-group-append">
+          <span class="input-group-text">EUR</span>
+        </div>
+      </div>
+      <small *ngIf="servicePrice.invalid && servicePrice.touched" class="text-danger">Price must be at least 1 EUR</small>
+      <br>
+    <button type="submit" class="btn btn-outline-dark" [disabled]="!serviceForm.valid">Submit</button>
+    <br>
+    <br>
+</form>

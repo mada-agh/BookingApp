@@ -1,0 +1,16 @@
+
+<div class="mx-auto my-3 btn-group" role="group">
+    <button type="button" class="btn btn-outline-dark" (click)="addCompany()" >Add</button>
+    <button type="button" class="btn btn-outline-dark" (click)="editCompany()" [disabled]="companyObject === 'default'">Edit</button>
+    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" [disabled]="companyObject === 'default'">Delete</button>
+    <button type="button" class="btn btn-outline-dark" (click)="addService()" [disabled]="companyObject === 'default'">Add service</button>
+</div>
+
+<!-- 
+     ngIf diferit de default sa se afiseze butoanele
+-->
+<hr>
+
+<router-outlet></router-outlet>
+
+

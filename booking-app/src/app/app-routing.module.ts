@@ -1,10 +1,51 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AddCompanyComponent } from './add-company/add-company.component';
+import { AddServiceComponent } from './add-service/add-service.component';
+import { BookingsComponent } from './bookings/bookings.component';
+import { CompaniesListComponent } from './companies-list/companies-list.component';
+import { CompaniesComponent } from './companies/companies.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditCompanyComponent } from './edit-company/edit-company.component';
+import { EmployeesComponent } from './employees/employees.component';
+import { ServicesListComponent } from './services-list/services-list.component';
+import { ServicesComponent } from './services/services.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
+  },
+  {path: 'dashboard', component: DashboardComponent},
+  {path: 'services', component: ServicesComponent,
+  children: [
+    {path: 'add', component: AddServiceComponent},
+    {path: 'list-user', component: ServicesListComponent}
+  ]},
+  {path: 'companies', component: CompaniesComponent,
+  children: [
+    {path: 'add', component: AddCompanyComponent},
+    {path: 'edit', component: EditCompanyComponent},
+    {path: 'list', component: CompaniesListComponent}
+  ]},
+  {path: 'bookings', component: BookingsComponent},
+  {path: 'employees', component: EmployeesComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+export const routingComponents = [DashboardComponent,
+                                  ServicesComponent,
+                                  CompaniesComponent,
+                                  BookingsComponent,
+                                  EmployeesComponent,
+                                  AddCompanyComponent,
+                                  EditCompanyComponent,
+                                  CompaniesListComponent,
+                                  AddServiceComponent,
+                                  ServicesListComponent];

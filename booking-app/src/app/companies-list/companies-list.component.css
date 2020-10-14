@@ -1,0 +1,14 @@
+div pagination-controls {
+    display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+
+img{
+    max-width:150px;;
+    max-height:150px;
+  }
+
+.highlighted {
+     background-color: lightblue;
+     }

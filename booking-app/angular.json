@@ -24,9 +24,25 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "graphql-tag",
+              "zen-observable",
+              "uuid",
+              "crypto-js",
+              "js-cookie",
+              "axios",
+              "buffer",
+              "@aws-crypto/sha256-js",
+              "fast-xml-parser",
+              "@aws-crypto/sha256-browser",
+              "isomorphic-unfetch",
+              "@aws-crypto/crc32"
+           ]
           },
           "configurations": {
             "production": {
@@ -119,6 +135,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "booking-app"
+    }
+  },
+  "defaultProject": "booking-app",
+  "cli": {
+    "analytics": "b4ca5aff-32a8-4947-b544-9f8e95322c91"
+  }
 }
