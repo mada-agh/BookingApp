@@ -21,22 +21,21 @@ export class CompaniesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCompanies();
-    this._companyService.currentCompanyObject.subscribe(res => this.companyObject = res);
+    this._companyService.changeCompany('default');
   }
 
   getCompanies() {
     this._companyService.listCompanies()
     .subscribe(data => {
-      console.log(data);
       this.companies = data;
       this.totalRecord = data.length;
 
     });
   }
 
-selectCompany(event: any, company: any) {
-  this.companyObject = company;
-  this.currentCompany = company.name;
-  this._companyService.changeCompany(this.companyObject);
-}
+  selectCompany(event: any, company: any) {
+    this.companyObject = company;
+    this.currentCompany = company.name;
+    this._companyService.changeCompany(this.companyObject);
+  }
 }

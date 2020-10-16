@@ -19,15 +19,20 @@ export class ServicesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getServicesByUser();
-    console.log(this.services);
+    this._serviceService.changeService('default');
   }
 
   getServicesByUser() {
     this._serviceService.listServicesByUser()
     .subscribe(data => {
-      console.log(data);
       this.services = data;
       this.totalRecord = data.length;
     });
+  }
+
+  selectService(event: any, service: any) {
+    this.serviceObject = service;
+    this.currentService = service.name;
+    this._serviceService.changeService(this.serviceObject);
   }
 }

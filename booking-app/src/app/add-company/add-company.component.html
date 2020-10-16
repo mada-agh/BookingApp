@@ -30,10 +30,12 @@
     
     <div class="input-group mb-3">
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="inputGroupFile01" formControlName="logoLink" (change)="onChange($event)">
+          <input type="file" accept=".jpeg, .png, .png" class="custom-file-input" id="inputGroupFile01" formControlName="logoLink" (change)="onChange($event)">
           <label class="custom-file-label">{{logoLink.valid ? file.name : 'Choose file' }}</label>
         </div>    
     </div>
     
     <button type="submit" class="btn btn-outline-dark" [disabled]="!companyForm.valid">Submit</button>
+    <br>
+    <br>
 </form>

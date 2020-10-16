@@ -1,7 +1,7 @@
 
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 import { CompanyService } from '../company.service';
 import { requiredFileType } from '../shared/image.validator';
 
@@ -23,6 +23,7 @@ export class EditCompanyComponent implements OnInit {
   companyObject: any;
 
   url: string | ArrayBuffer;
+  file: File | null = null;
   defaultUrl = "./../../assets/defaultImg.png";
 
   get name() {
@@ -37,11 +38,15 @@ export class EditCompanyComponent implements OnInit {
     return this.companyForm.get('logoLink');
   }
 
-  constructor(private fb: FormBuilder, private _companyService: CompanyService) { }
+  constructor(private fb: FormBuilder, private _companyService: CompanyService,private router: Router, private _cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this._companyService.currentCompanyObject.subscribe(res => this.companyObject = res);
+    if(this.companyObject === 'default') {
+      this.router.navigate(['/companies/list']);
+    }
     this.setForm();
+    this.url = this.logoLink.value;
   }
 
   private setForm() {
@@ -53,9 +58,6 @@ export class EditCompanyComponent implements OnInit {
     
   }
 
-  
-  file: File | null = null;
-
   onChange(event) {
     const file = event.srcElement.files[0];
     this.file = file;
@@ -64,6 +66,7 @@ export class EditCompanyComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = (event) => {
         this.url = reader.result;
+        this._cdr.markForCheck();
       }
     }
   }
@@ -76,6 +79,7 @@ export class EditCompanyComponent implements OnInit {
       response => console.log('Success', response),
       error => console.error('Error', error)
     );
-    this.companyForm.reset();
+    this._companyService.changeCompany('default');
+    this.router.navigate(['/companies/list']);
   }
 }

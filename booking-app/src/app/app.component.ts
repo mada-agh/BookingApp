@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CompanyService } from './company.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ServiceService } from './service.service';
 
 declare var $ :any;
 
@@ -12,18 +12,28 @@ declare var $ :any;
 export class AppComponent {
   title = 'booking-app';
   companyObject: any;
+  serviceObject: any;
   
-  constructor(private _companyService: CompanyService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private _companyService: CompanyService, private _serviceService: ServiceService) {}
 
   ngOnInit(): void {
     this._companyService.currentCompanyObject.subscribe(res => this.companyObject = res);
+    this._serviceService.currentServiceObject.subscribe(res => this.serviceObject = res);
   }
  
   deleteCompany() {
     //delete company by id
     this._companyService.deleteCompany(this.companyObject.id)
     .subscribe(data => {
-      $('exampleModal').modal('hide');
+      $('companyModal').modal('hide');
+      window.location.reload();
+    });
+  }
+
+  deleteService() {
+    this._serviceService.deleteService(this.serviceObject.id ,this.serviceObject.sk)
+    .subscribe(data => {
+      $('serviceModal').modal('hide');
       window.location.reload();
     });
   }

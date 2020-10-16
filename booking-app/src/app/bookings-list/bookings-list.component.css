@@ -4,11 +4,10 @@ div pagination-controls {
   justify-content: center; 
 }
 
-img{
-    max-width:150px;;
-    max-height:150px;
-  }
-
 .highlighted {
      background-color: lightblue;
+}
+
+table {
+    height: 500px;
 }

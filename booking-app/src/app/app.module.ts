@@ -20,6 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompaniesListComponent } from './companies-list/companies-list.component';
 import { AddServiceComponent } from './add-service/add-service.component';
 import { ServicesListComponent } from './services-list/services-list.component';
+import { EditServiceComponent } from './edit-service/edit-service.component';
+import { BookingsListComponent } from './bookings-list/bookings-list.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { ServicesListComponent } from './services-list/services-list.component';
     EditCompanyComponent,
     CompaniesListComponent,
     AddServiceComponent,
-    ServicesListComponent
+    ServicesListComponent,
+    EditServiceComponent,
+    BookingsListComponent
   ],
   imports: [
     BrowserModule,
