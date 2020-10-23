@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="title">
+        <h2>{{company.name}}</h2>
+    </div>
+    
+    <div class="body">
+        <div class="body-column">
+            <img src="{{company.logoLink}}">
+        </div>
+        <div class="body-column">
+            <p>{{company.description}}</p>
+        </div>
+    </div>
+
+    <div class="services-section">
+        <div *ngFor="let service of services" class="card mb-3 service-card" (click)="selectService($event, service)">
+            <div class="row">
+                <div class="col">
+                    <div class="card-body">
+                      <h5 class="card-title">{{service.name}}</h5>
+                      <p class="card-text">{{service.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

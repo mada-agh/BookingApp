@@ -1,0 +1,26 @@
+<input type="text" [(ngModel)]="searchText" placeholder="Search..." class="form-control">
+
+<table #companyTable class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Logo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let company of companies | filter: searchText | paginate: { id: 'listing_pagination',
+        itemsPerPage: 5,
+        currentPage: page,
+        totalItems: totalRecord}" (click)="selectCompany($event, company)" [class.highlighted]="company.id === currentCompany">
+        <td>{{company.name}}</td>
+        <td>{{company.description}}</td>
+        <td>
+            <img src="{{company.logoLink}}">
+        </td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <pagination-controls class="my-pagination" id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+</div>

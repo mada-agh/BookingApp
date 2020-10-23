@@ -1,0 +1,32 @@
+<input type="text" [(ngModel)]="searchText" placeholder="Search..." class="form-control">
+
+<table #bookingTable class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone number</th>
+            <th>Company</th>
+            <th>Service</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let booking of bookings | filter: searchText | paginate: { id: 'listing_pagination',
+        itemsPerPage: 5,
+        currentPage: page,
+        totalItems: totalRecord}" (click)="selectBooking($event, booking)" [class.highlighted]="booking.id === currentBooking">
+        <td>{{booking.name}}</td>
+        <td>{{booking.email}}</td>
+        <td>{{booking.phoneNumber}}</td>
+        <td>{{booking.companyName}}</td>
+        <td>{{booking.serviceName}}</td>
+        <td>{{booking.slot.day}},<!-- {{booking.slot.date | date:'longDate'}} --> </td>
+        <td>{{booking.slot.startHour}} - {{booking.slot.endHour}}</td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <pagination-controls class="my-pagination" id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+</div>

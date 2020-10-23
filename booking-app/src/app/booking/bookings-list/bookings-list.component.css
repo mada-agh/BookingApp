@@ -1,0 +1,25 @@
+div pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #F95B3D;
+}
+
+.highlighted {
+     background-color: #f95c3d38;
+}
+
+table {
+    height: 500px;
+}
+
+input {
+  width: 30%;
+  position: relative;
+  right: 35%;
+  left: 35%;
+  margin-bottom: 5px;
+}

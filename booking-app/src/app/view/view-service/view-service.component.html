@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="title">
+        <h2>{{service.name}}</h2>
+    </div>
+    <div class="body">
+        <div class="body-row">
+            <div class="left-column">Company </div>
+            <div class="right-column">{{company.name}}</div>
+        </div>
+        <hr>
+        <div class="body-row">
+            <div class="left-column">Description </div>
+            <div class="right-column">{{service.description}}</div>
+        </div>
+        <hr>
+        <div class="body-row">
+            <div class="left-column">Price </div>
+            <div class="right-column">{{service.servicePrice}}</div>
+        </div>
+        <hr>
+        <div class="body-row">
+            <div class="left-column">Space </div>
+            <div class="right-column">{{service.serviceSpace}}</div>
+        </div>
+        <hr>
+        <div class="body-row">
+            <div class="left-column">Availability </div>
+            <div class="right-column">
+                <p *ngFor="let day of service.aviability">{{day.day}}: {{day.startHour}} - {{day.endHour}}</p>
+            </div>
+        </div>
+    </div>
+</div>

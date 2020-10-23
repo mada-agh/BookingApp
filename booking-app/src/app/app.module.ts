@@ -1,27 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ServicesComponent } from './services/services.component';
-import { CompaniesComponent } from './companies/companies.component';
-import { BookingsComponent } from './bookings/bookings.component';
-import { EmployeesComponent } from './employees/employees.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AddCompanyComponent } from './add-company/add-company.component';
 import { HttpClientModule } from '@angular/common/http';
-import { EditCompanyComponent } from './edit-company/edit-company.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CompaniesListComponent } from './companies-list/companies-list.component';
-import { AddServiceComponent } from './add-service/add-service.component';
-import { ServicesListComponent } from './services-list/services-list.component';
-import { EditServiceComponent } from './edit-service/edit-service.component';
-import { BookingsListComponent } from './bookings-list/bookings-list.component';
+import { ServicesComponent } from './service/services/services.component';
+import { CompaniesComponent } from './company/companies/companies.component';
+import { BookingsComponent } from './booking/bookings/bookings.component';
+import { AddCompanyComponent } from './company/add-company/add-company.component';
+import { EditCompanyComponent } from './company/edit-company/edit-company.component';
+import { CompaniesListComponent } from './company/companies-list/companies-list.component';
+import { AddServiceComponent } from './service/add-service/add-service.component';
+import { ServicesListComponent } from './service/services-list/services-list.component';
+import { EditServiceComponent } from './service/edit-service/edit-service.component';
+import { BookingsListComponent } from './booking/bookings-list/bookings-list.component';
+import { AddBookingComponent } from './booking/add-booking/add-booking.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ViewCompanyComponent } from './view/view-company/view-company.component';
+import { ViewServiceComponent } from './view/view-service/view-service.component';
+import { EditBookingComponent } from './booking/edit-booking/edit-booking.component';
 
 
 @NgModule({
@@ -30,7 +34,6 @@ import { BookingsListComponent } from './bookings-list/bookings-list.component';
     ServicesComponent,
     CompaniesComponent,
     BookingsComponent,
-    EmployeesComponent,
     DashboardComponent,
     routingComponents,
     NavbarComponent,
@@ -40,7 +43,11 @@ import { BookingsListComponent } from './bookings-list/bookings-list.component';
     AddServiceComponent,
     ServicesListComponent,
     EditServiceComponent,
-    BookingsListComponent
+    BookingsListComponent,
+    AddBookingComponent,
+    ViewCompanyComponent,
+    ViewServiceComponent,
+    EditBookingComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +56,9 @@ import { BookingsListComponent } from './bookings-list/bookings-list.component';
     RouterModule,
     HttpClientModule,
     NgbModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [], 
   bootstrap: [AppComponent]

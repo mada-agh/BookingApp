@@ -1,36 +1,69 @@
-<div class="row p-3 mx-auto">
-    <div class="col-sm-6 align-middle p-5">
-        <a class="btn p-5 card" routerLink="/services/list-user" routerLinkActive="active" >
-            <div class="card-body">
-              <h5 class="card-title">Services</h5>
-              <p class="card-text">Manage all your services.</p>
+<div class="div-header">
+  <h3>Here you can find companies, services and make bookings online</h3>
+  <p class="div-comment">It's easy, safe and free!</p>
+  <div class="div-button">
+    <button type="button" (click)="makeBooking()">Make a booking</button>
+  </div>
+  
+</div>
+
+
+<div class="container">
+    <div class="section-container">
+        <h2 class="section-title">Companies</h2>
+        <hr>
+        <div class="section-body">
+            <div *ngFor="let company of companies | slice:0:4;  let i=index" class="card mb-3" (click)="selectCompany($event, company)">
+                <div class="row">
+                    <div class="col-md-4">
+                      <img src="{{company.logoLink}}" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{company.name}}</h5>
+                        <p class="card-text">{{company.description}}</p>
+                      </div>
+                    </div>
+                  </div>
             </div>
-        </a>
+        </div>
+        <footer>
+            <a class="nav-link" routerLink="/companies/list" routerLinkActive="active">See more</a>
+        </footer>
     </div>
-    <div class="col-sm-6 align-middle p-5">
-        <a class="btn p-5 card" routerLink="/companies/list" routerLinkActive="active" >
-                <div class="card-body">
-                  <h5 class="card-title">Companies</h5>
-                  <p class="card-text">Manage all the companies and add services.</p>
+        
+    <div class="section-container">
+        <h2 class="section-title">Services</h2>
+        <hr>
+        <div class="section-body">
+            <div *ngFor="let service of services | slice:0:4;  let i=index" class="card mb-3 h-100" style="background-color:lavender;"
+            (click)="selectService($event, service)">
+                <div class="row">
+                  <div class="col">
+                    <div class="card-body">
+                      <h5 class="card-title">{{service.name}}</h5>
+                      <p class="card-text">{{service.description}}</p>
+                    </div>
+                  </div>
+
+                    <div class="col">
+                        <div class="card-body">
+                            <h6 class="card-title">Company:</h6>
+                            <p class="card-text" style="font-style: italic;">{{service.company}}</p>
+                        </div>
+                    </div>
+
+                  
                 </div>
-        </a>
+        </div>
+        </div>
+        <footer>
+            <a class="nav-link" routerLink="/services/list-user" routerLinkActive="active">See more</a>
+        </footer>
     </div>
-  </div>
-  <div class="row p-3 mx-auto">
-    <div class="col-sm-6 align-middle p-5">
-        <a class="btn p-5 card" routerLink="/bookings/list" routerLinkActive="active">
-                <div class="card-body">
-                  <h5 class="card-title">Bookings</h5>
-                  <p class="card-text">Check out all the booked services.</p>
-                </div>
-        </a>
-    </div>
-    <div class="col-sm-6 align-middle p-5 pt-0">
-        <a class="btn p-5 card" routerLink="/employees" routerLinkActive="active">
-                <div class="card-body">
-                  <h5 class="card-title">Employees</h5>
-                  <p class="card-text">Manage all the employees.</p>
-                </div>
-        </a>
-    </div>
-  </div>
+</div>
+
+
+
+
+

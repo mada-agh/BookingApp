@@ -1,0 +1,48 @@
+.container {
+    display: block;
+    position: relative;
+    top: 2rem;
+    justify-content: center;
+}
+
+.title {
+    text-align: center;
+    color: #270949;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.body {
+    display: block;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-left: 20%;
+    margin-right: 20%;
+    font-size: 1.4rem;
+  }
+  
+  .body-row {
+    display: flex;
+    margin: 15px;
+    flex: 1 1 100%;  
+  }
+
+  .left-column {
+    flex: 1;
+    color: #4654a3;
+  }
+
+  .right-column {
+    flex: 2;
+  }
+
+  @media screen and (max-width: 992px) {
+      .body {
+        margin-left: 0;
+        margin-right: 0;
+      }
+  }
+
+  hr {
+      border-color: #f95b3d;
+  }

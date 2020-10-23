@@ -1,0 +1,16 @@
+<div class="mx-auto my-4 btn-group btn-container" role="group" aria-label="Button group with nested dropdown">
+    <div class="btn-group" role="group">
+        <button id="btnGroupAdd" type="button" class="btn btn-outline-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Add
+        </button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupAdd">
+            <a class="dropdown-item" *ngFor="let company of companies" (click)="selectCompany($event, company)">{{company.name}}</a>
+        </div>
+    </div>
+    <button type="button" class="btn btn-outline-dark" [disabled]="serviceObject === 'default'" (click)="editService()">Edit</button>
+    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#serviceModal" [disabled]="serviceObject === 'default'">Delete</button>
+</div>
+
+<hr>
+
+<router-outlet></router-outlet>

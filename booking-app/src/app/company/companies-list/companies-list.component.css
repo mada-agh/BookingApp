@@ -1,0 +1,30 @@
+div pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #F95B3D;
+}
+
+img{
+    max-width:150px;;
+    max-height:150px;
+  }
+
+.highlighted {
+     background-color: #f95c3d38;
+}
+
+tr {
+  cursor: pointer;
+}
+
+input {
+  width: 30%;
+  position: relative;
+  right: 35%;
+  left: 35%;
+  margin-bottom: 5px;
+}

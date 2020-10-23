@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddCompanyComponent } from './add-company/add-company.component';
-import { AddServiceComponent } from './add-service/add-service.component';
-import { BookingsListComponent } from './bookings-list/bookings-list.component';
-import { BookingsComponent } from './bookings/bookings.component';
-import { CompaniesListComponent } from './companies-list/companies-list.component';
-import { CompaniesComponent } from './companies/companies.component';
+import { AddBookingComponent } from './booking/add-booking/add-booking.component';
+import { BookingsListComponent } from './booking/bookings-list/bookings-list.component';
+import { BookingsComponent } from './booking/bookings/bookings.component';
+import { EditBookingComponent } from './booking/edit-booking/edit-booking.component';
+import { AddCompanyComponent } from './company/add-company/add-company.component';
+import { CompaniesListComponent } from './company/companies-list/companies-list.component';
+import { CompaniesComponent } from './company/companies/companies.component';
+import { EditCompanyComponent } from './company/edit-company/edit-company.component';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { EditCompanyComponent } from './edit-company/edit-company.component';
-import { EditServiceComponent } from './edit-service/edit-service.component';
-import { EmployeesComponent } from './employees/employees.component';
-import { ServicesListComponent } from './services-list/services-list.component';
-import { ServicesComponent } from './services/services.component';
+import { AddServiceComponent } from './service/add-service/add-service.component';
+import { EditServiceComponent } from './service/edit-service/edit-service.component';
+import { ServicesListComponent } from './service/services-list/services-list.component';
+import { ServicesComponent } from './service/services/services.component';
+import { ViewCompanyComponent } from './view/view-company/view-company.component';
+import { ViewServiceComponent } from './view/view-service/view-service.component';
 
 const routes: Routes = [
   {
@@ -34,9 +38,12 @@ const routes: Routes = [
   ]},
   {path: 'bookings', component: BookingsComponent,
   children: [
-    {path: 'list', component: BookingsListComponent}
+    {path: 'list', component: BookingsListComponent},
+    {path: 'add', component: AddBookingComponent},
+    {path: 'edit', component: EditBookingComponent}
   ]},
-  {path: 'employees', component: EmployeesComponent}
+  {path: 'view-company/:id', component: ViewCompanyComponent},
+  {path: 'view-service/:id', component: ViewServiceComponent}
 ];
 
 @NgModule({
@@ -49,11 +56,12 @@ export const routingComponents = [DashboardComponent,
                                   ServicesComponent,
                                   CompaniesComponent,
                                   BookingsComponent,
-                                  EmployeesComponent,
                                   AddCompanyComponent,
                                   EditCompanyComponent,
                                   CompaniesListComponent,
                                   AddServiceComponent,
                                   ServicesListComponent,
                                   EditServiceComponent,
-                                  BookingsListComponent];
+                                  BookingsListComponent,
+                                  AddBookingComponent,
+                                  EditBookingComponent];
