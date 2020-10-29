@@ -14,7 +14,6 @@ export class CompanyService {
   private companyObjectSource = new BehaviorSubject('default');
   currentCompanyObject = this.companyObjectSource.asObservable();
 
-
   changeCompany(obj: any) {
     this.companyObjectSource.next(obj);
   }
@@ -31,13 +30,9 @@ export class CompanyService {
   updateCompany(companyData: any, id: string, sk: string): Observable<any> {
     companyData.userId = this.userId;
     return this._http.put<any>(this._url + `${id}/${sk}`, companyData);
-      // .pipe(
-      //   catchError(this.handleError('updateCompany', company))
-      // );
   }
 
   deleteCompany(id: string): Observable<{}> {
     return this._http.delete(this._url + `${id}`);
   }
-
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,10 @@ export class NavbarComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   
+  logout(): void {
+    localStorage.removeItem('token');
+    window.location.assign(environment.logout);
+  }
 }

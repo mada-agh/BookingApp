@@ -47,6 +47,7 @@ export class EditServiceComponent implements OnInit {
 
   ngOnInit(): void {
     this._serviceService.currentServiceObject.subscribe(res => this.serviceObject = res);
+    //if not service is selected then go back to services-list component
     if(this.serviceObject === 'default') {
       this.router.navigate(['/services/list-user']);
     }

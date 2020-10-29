@@ -1,4 +1,3 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookingService } from 'src/app/common/services/booking.service';
@@ -14,6 +13,7 @@ export class BookingsComponent implements OnInit {
   constructor(private _bookingService: BookingService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    //get selected booking in the service
     this._bookingService.currentBookingObject.subscribe(res => this.bookingObject = res);
   }
 

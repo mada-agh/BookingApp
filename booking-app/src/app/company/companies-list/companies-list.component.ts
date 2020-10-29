@@ -23,6 +23,7 @@ export class CompaniesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCompanies();
+    //unselect de saved company in the service
     this._companyService.changeCompany('default');
   }
 
@@ -37,6 +38,7 @@ export class CompaniesListComponent implements OnInit {
   selectCompany(event: any, company: any) {
     this.companyObject = company;
     this.currentCompany = company.id;
+    //save the selected company in the service
     this._companyService.changeCompany(this.companyObject);
   }
 }

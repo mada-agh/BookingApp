@@ -31,5 +31,4 @@ export class ViewCompanyComponent implements OnInit {
   selectService($event, service){
     this.router.navigate([`/view-service/${service.sk}`]);
   }
-
 }

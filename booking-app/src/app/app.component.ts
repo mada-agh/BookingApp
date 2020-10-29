@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { BookingService } from './common/services/booking.service';
 import { CompanyService } from './common/services/company.service';
 import { ServiceService } from './common/services/service.service';
@@ -15,8 +16,20 @@ export class AppComponent {
   companyObject: any;
   serviceObject: any;
   bookingObject: any;
+
+  showNavbar = false;
   
-  constructor(private _companyService: CompanyService, private _serviceService: ServiceService, private _bookingService: BookingService) {}
+  constructor(private _companyService: CompanyService, private _serviceService: ServiceService, private _bookingService: BookingService,
+    private router: Router) {
+      //check if the current page is start. If so, then hide navbar component
+      this.router.events.subscribe(event => {
+        if(event instanceof NavigationEnd) {
+          if(event.urlAfterRedirects != '/start') {
+            this.showNavbar = true;
+          }
+        }
+      });
+  }
 
   ngOnInit(): void {
     this._companyService.currentCompanyObject.subscribe(res => this.companyObject = res);

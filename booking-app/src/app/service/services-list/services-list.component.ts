@@ -18,7 +18,6 @@ export class ServicesListComponent implements OnInit {
 
   constructor(private _serviceService: ServiceService) { }
 
-  
   ngOnInit(): void {
     this.getServicesByUser();
     this._serviceService.changeService('default');

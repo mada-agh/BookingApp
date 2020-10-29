@@ -3,24 +3,45 @@ import { Router } from '@angular/router';
 import { CompanyService } from '../common/services/company.service';
 import { ServiceService } from '../common/services/service.service';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  tokenDetails: any;
+  token: any;
 
   companies: any;
   services: any;
-  constructor(private _companyService: CompanyService, private _serviceService: ServiceService, private router: Router) { }
+
+  userDetails: any;
+  constructor(private _companyService: CompanyService, private _serviceService: ServiceService, private router: Router) {}
 
   ngOnInit(): void {
+    console.log('Token: ', localStorage.getItem('token'));
+
+    this.token = localStorage.getItem('token');
+
+    //check if token exists, if not then go back to start page
+    if (this.token != null) {
+      const base64Url = this.token.split('.')[1];
+      const base64 = base64Url.replace('-', '+').replace('_', '/');
+      this.tokenDetails = JSON.parse(atob(base64));
+
+      console.log(this.tokenDetails);
+    } else {
+      this.router.navigate(['start']);
+    }
+
     this._companyService.listCompanies()
     .subscribe(data => {
       this.companies = data;
       this._serviceService.listServicesByUser()
       .subscribe(data => {
         this.services = data;
+        //add company name attribute to the first 4 services
         for(let i = 0; i < 4 && i < this.services.length; i++) {
          this.services[i].company = this.companies.find(company => this.services[i].id === company.id).name;
        }
@@ -39,5 +60,4 @@ export class DashboardComponent implements OnInit {
   makeBooking() {
     this.router.navigate(['/bookings/add']);
   }
-
 }

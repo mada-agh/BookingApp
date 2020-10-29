@@ -21,14 +21,11 @@ export class ViewServiceComponent implements OnInit {
       this._serviceService.listServicesByUser()
       .subscribe(services => {
         this.service = services.find(service => service.sk === this.id);
-        console.log(this.service);
         this._companyService.listCompanies()
         .subscribe(companies => {
           this.company = companies.find(company => this.service.id === company.id);
-          console.log(this.company);
         });
       });
    });
   }
-
 }

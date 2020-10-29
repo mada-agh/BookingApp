@@ -5,3 +5,11 @@
   padding-left: 30%;
   padding-right: 30%;
 }
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.dropdown-item:active {
+  background-color: #F95B3D;
+}

@@ -47,6 +47,7 @@ export class AddCompanyComponent implements OnInit {
     const file = event.srcElement.files[0];
     this.file = file;
     var reader = new FileReader();
+    //convert the image file to base64
     if(file) {
       reader.readAsDataURL(file);
       reader.onload = (event) => {
@@ -65,5 +66,4 @@ export class AddCompanyComponent implements OnInit {
     );
     this.companyForm.reset();
   }
-  
 }

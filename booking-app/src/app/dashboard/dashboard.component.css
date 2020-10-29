@@ -79,7 +79,7 @@
         align-items: center;
         justify-content: space-around;
     }
-  }
+}
 
 hr {
     border: 0;
@@ -98,6 +98,7 @@ hr {
     margin-right: 0;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
+
 .nav-link:hover {
     color: rosybrown;
 }
@@ -122,7 +123,6 @@ footer {
     size: 1vh;
     text-align: center;
     width: 100%;
-
 }
 
 .img-div {

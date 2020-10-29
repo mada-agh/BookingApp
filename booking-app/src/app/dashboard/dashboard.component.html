@@ -4,9 +4,7 @@
   <div class="div-button">
     <button type="button" (click)="makeBooking()">Make a booking</button>
   </div>
-  
 </div>
-
 
 <div class="container">
     <div class="section-container">
@@ -36,24 +34,22 @@
         <h2 class="section-title">Services</h2>
         <hr>
         <div class="section-body">
-            <div *ngFor="let service of services | slice:0:4;  let i=index" class="card mb-3 h-100" style="background-color:lavender;"
+            <div *ngFor="let service of services | slice:0:4;  let i=index" class="card mb-3" style="background-color:lavender;"
             (click)="selectService($event, service)">
                 <div class="row">
-                  <div class="col">
+                  <div class="col" style="flex: 2;">
                     <div class="card-body">
                       <h5 class="card-title">{{service.name}}</h5>
                       <p class="card-text">{{service.description}}</p>
                     </div>
                   </div>
 
-                    <div class="col">
+                    <div class="col" style="flex: 1;">
                         <div class="card-body">
                             <h6 class="card-title">Company:</h6>
                             <p class="card-text" style="font-style: italic;">{{service.company}}</p>
                         </div>
                     </div>
-
-                  
                 </div>
         </div>
         </div>
@@ -62,6 +58,7 @@
         </footer>
     </div>
 </div>
+
 
 
 

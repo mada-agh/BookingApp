@@ -25,6 +25,7 @@ export class BookingsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBookings();
+    //unselect the saved booking in the service
     this._bookingService.changeBooking('default');
   }
 
@@ -50,12 +51,16 @@ export class BookingsListComponent implements OnInit {
     .subscribe(data => {
       this.services = data;
       this.bookings.forEach(booking => {
+
+        //add companyName attribute to each booking
         let company = this.companies.find(company => booking.companyId === company.id);
         if(company) {
           booking.companyName = company.name;
         } else {
           booking.companyName = "--";
         }
+
+        //add serviceName attribute to each booking
         let service = this.services.find(service => booking.serviceId === service.sk);
         if(service) {
           booking.serviceName = service.name;
@@ -69,7 +74,7 @@ export class BookingsListComponent implements OnInit {
   selectBooking(event: any, booking: any) {
     this.bookingObject = booking;
     this.currentBooking = booking.id;
+    //save the selected booking in the service
     this._bookingService.changeBooking(this.bookingObject);
   }
-
 }

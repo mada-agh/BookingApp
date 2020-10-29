@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyService } from 'src/app/common/services/company.service';
 import { ServiceService } from 'src/app/common/services/service.service';
 
-
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
@@ -21,7 +20,6 @@ export class ServicesComponent implements OnInit {
     .subscribe(data => {
       this.companies = data;
     });
-    
   }
 
   editService() {
@@ -32,5 +30,4 @@ export class ServicesComponent implements OnInit {
     this._companyService.changeCompany(company);
     this.router.navigate(['add'], {relativeTo: this.route});
   }
-
 }

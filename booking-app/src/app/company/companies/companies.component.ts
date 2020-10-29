@@ -13,6 +13,7 @@ export class CompaniesComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private _companyService: CompanyService) { }
 
   ngOnInit(): void {
+    //get the selected company from the service
     this._companyService.currentCompanyObject.subscribe(res => this.companyObject = res);
   }
 

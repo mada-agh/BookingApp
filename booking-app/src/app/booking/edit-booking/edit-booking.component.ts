@@ -1,4 +1,3 @@
-import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -28,9 +27,8 @@ export class EditBookingComponent implements OnInit {
   emailPattern = `^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$`;
   phonePattern = `^(\\+\\d{1,3}[- ]?)?\\d{10}$`;
 
-  minDate = formatDate(new Date(), 'dd.MM.yyyy', 'en');
-
   weekDays = ["sunday", "monday", "tuesday", "wednesday","thursday", "friday", "saturday"];
+  minDate = new Date();
 
   get name() {
     return this.bookingForm.get('name');
@@ -56,6 +54,7 @@ export class EditBookingComponent implements OnInit {
     private _companyService: CompanyService, private _serviceService: ServiceService) { }
 
   ngOnInit(): void {
+    //get the saved booking in the service, and set the form
     this._bookingService.currentBookingObject.subscribe(res => {
       this.bookingObject = res;
       if(this.bookingObject === 'default') {
@@ -78,6 +77,8 @@ export class EditBookingComponent implements OnInit {
   }
 
   setForm() {
+    const date = new Date(this.bookingObject.slot.date);
+
     this.bookingForm = this.fb.group({
       name: [this.bookingObject.name, [Validators.required, Validators.minLength(3)]],
       email: [this.bookingObject.email, [Validators.required, Validators.pattern(this.emailPattern)]],
@@ -85,7 +86,7 @@ export class EditBookingComponent implements OnInit {
       companyId: [this.bookingObject.companyId],
       serviceId: [this.bookingObject.serviceId],
       slot: this.fb.group({
-        date: [this.bookingObject.slot.date, [Validators.required, this.availableDate()]],
+        date: [date, [Validators.required, this.availableDate()]],
         startHour: [this.bookingObject.slot.startHour, [Validators.required, this.availableHour()]],
         endHour: [this.bookingObject.slot.endHour],
         day: [this.bookingObject.slot.day]
@@ -105,9 +106,12 @@ export class EditBookingComponent implements OnInit {
 
   availableDate(): ValidatorFn {
     return (control: AbstractControl):{[key: string]: any} | null => {
-      const date = new Date(control.value);
+      const date = new Date();
+      date.setFullYear(control.value.year);
+      date.setMonth(control.value.month - 1);
+      date.setDate(control.value.day);
       if(this.service && date) {
-        if(this.service.aviability.every(el => this.weekDays.indexOf(el.day) != date.getDay()) == true){
+        if(this.service.aviability.every(el => this.weekDays.indexOf(el.day) != date.getDay()) == true || date < this.minDate){
           return {
             invalidDate: {value: date}
           }
@@ -150,8 +154,8 @@ export class EditBookingComponent implements OnInit {
       response => console.log('Success', response),
       error => console.error('Error', error)
     );
+
     this._bookingService.changeBooking('default');
     this.router.navigate(['/bookings/list']);
   }
-
 }

@@ -2,3 +2,11 @@ form {
     margin-left: 20%;
     margin-right: 20%;
 }
+
+option {
+    cursor: pointer;
+}
+
+option:hover { 
+    background: #F95B3D; 
+}

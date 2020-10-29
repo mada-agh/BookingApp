@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -26,7 +25,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ViewCompanyComponent } from './view/view-company/view-company.component';
 import { ViewServiceComponent } from './view/view-service/view-service.component';
 import { EditBookingComponent } from './booking/edit-booking/edit-booking.component';
-
+import { StartComponent } from './start/start.component';
+import { AuthGuardService } from './common/services/auth-guard.service';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { EditBookingComponent } from './booking/edit-booking/edit-booking.compon
     AddBookingComponent,
     ViewCompanyComponent,
     ViewServiceComponent,
-    EditBookingComponent
+    EditBookingComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,11 @@ import { EditBookingComponent } from './booking/edit-booking/edit-booking.compon
     FormsModule,
     Ng2SearchPipeModule
   ],
-  providers: [], 
+  providers: [AuthGuardService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+        JwtHelperService,
+        AuthGuard
+    ], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,7 +19,6 @@ export class BookingService {
   }
 
   listBookings(): Observable<any> {
-    // return this._http.get<any>('https://8uf0rw0uh5.execute-api.eu-central-1.amazonaws.com/dev/bookingApp/allbookings/' + `${this.userId}`);
     return this._http.get<any>(this._url);
   }
 

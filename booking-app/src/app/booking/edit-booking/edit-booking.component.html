@@ -58,7 +58,7 @@
     <div class="form-row" formGroupName="slot">
         <label>Slot</label>
         <div class="form-group col">
-            <input required min="minDate" class="form-control" type="date" formControlName="date" [class.is-invalid]="date.invalid && date.touched">
+            <input ngbDatepicker required [minDate]="minDate" class="form-control" type="date" formControlName="date" [class.is-invalid]="date.invalid && date.touched">
             <div *ngIf="date.invalid && date.touched">
                 <small *ngIf="date.errors.required" class="text-danger" >Date is required</small>
                 <small *ngIf="date.errors.invalidDate" class="text-danger">Date not available</small>

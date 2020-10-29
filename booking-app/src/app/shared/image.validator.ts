@@ -12,9 +12,9 @@ export function requiredFileType( types: Array<string> ): ValidatorFn {
         } else {
           return {
             invalidFileType: {value: file}
-       };
+          };
         }
       }
       return null;
     };
-  }
+}

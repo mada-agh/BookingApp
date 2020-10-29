@@ -14,7 +14,6 @@ export class ServiceService {
   private serviceObjectSource = new BehaviorSubject('default');
   currentServiceObject = this.serviceObjectSource.asObservable();
 
-
   changeService(obj: any) {
     this.serviceObjectSource.next(obj);
   }

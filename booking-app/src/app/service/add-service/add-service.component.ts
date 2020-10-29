@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { CompanyService } from 'src/app/common/services/company.service';
 import { ServiceService } from 'src/app/common/services/service.service';
 
+//Validate number of week days
 function validateSize(arr: FormArray) {
   return arr.length >= 7 ? {
     invalidSize: true
@@ -64,7 +65,6 @@ export class AddServiceComponent implements OnInit {
   });
 
   onSubmit() {
-    console.log(this.companyObject);
     this._serviceService.addService(this.serviceForm.value, this.companyObject.id)
     .subscribe(
       response => console.log('Success', response),
@@ -80,5 +80,4 @@ export class AddServiceComponent implements OnInit {
       endHour: ['', [Validators.required]]
     }));
   }
- 
 }

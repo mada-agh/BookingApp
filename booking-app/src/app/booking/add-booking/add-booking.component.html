@@ -60,7 +60,7 @@
     <div class="form-row" formGroupName="slot">
         <label>Slot</label>
         <div class="form-group col">
-            <input required min="minDate" class="form-control" type="date" formControlName="date" [class.is-invalid]="date.invalid && date.touched">
+            <input ngbDatepicker required [minDate]="minDate" class="form-control" type="date" formControlName="date" [class.is-invalid]="date.invalid && date.touched">
             <div *ngIf="date.invalid && date.touched">
                 <small *ngIf="date.errors.required" class="text-danger" >Date is required</small>
                 <small *ngIf="date.errors.invalidDate" class="text-danger">Date not available</small>
@@ -74,7 +74,6 @@
                 <small *ngIf="startHour.errors.invalidHour" class="text-danger">Time not available</small>
             </div>
         </div>
-        
     </div>
 
     <button type="submit" class="btn btn-outline-dark" [disabled]="!bookingForm.valid">Submit</button>

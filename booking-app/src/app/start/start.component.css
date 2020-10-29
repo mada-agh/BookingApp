@@ -1,0 +1,72 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    min-width: 100%;
+    padding: 0;
+}
+
+.left-section {
+    background-color: lavender;
+    flex: 1.5;
+    min-height: 100%;
+    background-image: url("/assets/bckstart.jpg");
+    background-color: lavender;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.right-section {
+    flex: 1;
+    min-height: 100%;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    display: block;
+}
+
+img {
+    display: block;
+    height: 50vh;
+    margin-top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+    background-color: #F95B3D;
+    border: none;
+    border-radius: 25px;
+    height: 50px;
+    width: 200px;
+    font-size: 1.1rem;
+}
+
+button:focus {
+    border-radius: 25px;
+    outline: none;
+}
+
+.login {
+    padding: 10px;
+    display: block;
+    margin-top: 40%;
+}
+
+p {
+    font-size: 1.1em;
+}
+
+a {
+    font-weight: 600;
+    color: #4654a3;
+}
+
+a:hover {
+    cursor: pointer;
+    font-size: 0.9rem;
+}

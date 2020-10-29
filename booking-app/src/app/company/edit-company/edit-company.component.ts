@@ -40,6 +40,7 @@ export class EditCompanyComponent implements OnInit {
   constructor(private fb: FormBuilder, private _companyService: CompanyService, private router: Router, private _cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    //get the selected company from the service and set the form
     this._companyService.currentCompanyObject.subscribe(res => this.companyObject = res);
     if(this.companyObject === 'default') {
       this.router.navigate(['/companies/list']);
